@@ -7,8 +7,8 @@ on:
     branches: [ "dev" ]   # Opsiyonel: dev dalına push olduğunda da çalışabilir.
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -19,9 +19,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Make gradlew executable
+        run: chmod +x ./auth-service/gradlew
+
       - name: Build with Gradle
-        run: |
-          ./auth-service/gradlew build
+        run: ./auth-service/gradlew build
 
 #      - name: Run tests with Gradle
 #        run: |
