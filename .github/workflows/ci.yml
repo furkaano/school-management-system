@@ -1,0 +1,28 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ "main" ]  # PR'lar "main" dalına açıldığında tetiklenecek.
+  push:
+    branches: [ "dev" ]   # Opsiyonel: dev dalına push olduğunda da çalışabilir.
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Gradle
+        run: |
+          ./gradlew build
+
+#      - name: Run tests with Gradle
+#        run: |
+#          ./gradlew test
