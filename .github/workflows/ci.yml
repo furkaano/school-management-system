@@ -19,9 +19,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - run: |
-          cd auth-service
-          ls -R
+      # (İsteğe bağlı) Klasör yapısını görmek için
+      - run: ls -R
+        working-directory: auth-service
 
       - name: Make gradlew executable
         run: chmod +x gradlew
@@ -31,10 +31,9 @@ jobs:
         run: ./gradlew clean build
         working-directory: auth-service
 
-      - name: Build & Checkstyle
-        run: |
-          cd auth-service
-          ./gradlew clean check
+      - name: Checkstyle
+        run: ./gradlew check
+        working-directory: auth-service
 #      - name: Run tests with Gradle
 #        run: |
 #          ./gradlew test
