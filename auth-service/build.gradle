@@ -1,15 +1,28 @@
 plugins {
     id 'java'
+    id 'checkstyle'
     id 'org.springframework.boot' version '3.3.5'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'org.example'
+group = 'com.schoolmanagement'
 version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+checkstyle {
+    toolVersion = '10.12.1'
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.withType(Checkstyle).configureEach {
+    reports {
+        xml.required = false
+        html.required = true
     }
 }
 
