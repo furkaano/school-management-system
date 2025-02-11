@@ -20,10 +20,12 @@ jobs:
           java-version: '17'
 
       - name: Make gradlew executable
-        run: chmod +x ./auth-service/gradlew
+        run: chmod +x gradlew
+        working-directory: auth-service
 
-      - name: Build with Gradle
-        run: ./auth-service/gradlew build
+      - name: Build & Test
+        run: ./gradlew build
+        working-directory: auth-service
 
 #      - name: Run tests with Gradle
 #        run: |
