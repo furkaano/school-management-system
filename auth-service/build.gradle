@@ -15,8 +15,8 @@ java {
 }
 
 checkstyle {
-    toolVersion = '10.12.1' // Uygun bir Checkstyle sürümü
-    configFile = file("$rootDir/config/checkstyle/checkstyle.xml") // Özel config yolu
+    toolVersion = '10.12.1'
+    configFile = file("$rootDir/auth-service/config/checkstyle/checkstyle.xml")
 }
 
 tasks.withType(Checkstyle).configureEach {

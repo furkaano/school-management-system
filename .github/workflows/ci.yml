@@ -19,18 +19,22 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - run: |
+          cd auth-service
+          ls -R
+
       - name: Make gradlew executable
         run: chmod +x gradlew
         working-directory: auth-service
 
       - name: Build & Test
-        run: ./gradlew build
+        run: ./gradlew clean build
         working-directory: auth-service
-        
-      - name: Run Checkstyle
+
+      - name: Build & Checkstyle
         run: |
           cd auth-service
-          ./gradlew checkstyleMain checkstyleTest
+          ./gradlew clean check
 #      - name: Run tests with Gradle
 #        run: |
 #          ./gradlew test
